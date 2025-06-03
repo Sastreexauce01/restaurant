@@ -1,103 +1,134 @@
-import Image from "next/image";
+import { Faq3 } from "@/components/faq3";
+import { FeaturesSectionWithHoverEffects } from "@/components/feature-section-with-hover-effects";
+import { Footer7 } from "@/components/footer-7";
+import { HeroSection } from "@/components/hero-section-1";
+import { Pricing } from "@/components/pricing";
+import Testimonials from "@/components/testimonials";
+
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const demoData = {
+    heading: "Frequently asked questions",
+    description:
+      "Everything you need to know about shadcnblocks. Can't find the answer you're looking for? Feel free to contact our support team.",
+    items: [
+      {
+        id: "faq-1",
+        question: "What is RestauManager",
+        answer:
+          "shadcnblocks is a collection of ready-to-use block components built on top of shadcn/ui, designed to help you build beautiful websites faster.",
+      },
+      {
+        id: "faq-2",
+        question: "How do I install shadcnblocks?",
+        answer:
+          "shadcnblocks components are designed to be copied and pasted into your project. Simply browse the components, click on the one you want to use, and copy the code directly into your project. This gives you full control over the code and allows for easy customization.",
+      },
+      {
+        id: "faq-3",
+        question: "Is shadcnblocks free to use?",
+        answer:
+          "Yes, shadcnblocks is open-source and free to use in both personal and commercial projects. You can customize and modify the blocks to suit your needs.",
+      },
+      {
+        id: "faq-4",
+        question: "Can I customize the blocks?",
+        answer:
+          "Absolutely! All blocks are built with customization in mind. You can modify the styling, content, and behavior through props and Tailwind CSS classes.",
+      },
+      {
+        id: "faq-5",
+        question: "Do you offer support?",
+        answer:
+          "Yes, we provide support through our GitHub repository where you can report issues, suggest features, or ask questions about implementation.",
+      },
+    ],
+    supportHeading: "Vous avez encore des questions ?",
+    supportDescription:
+      "Vous ne trouvez pas la réponse que vous cherchez ? Notre équipe d’assistance est là pour vous aider avec toutes vos questions ou préoccupations techniques.",
+    supportButtonText: "Contact Support",
+    supportButtonUrl: "https://shadcnblocks.com",
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const demoPlans = [
+    {
+      name: "Premium",
+      price: "49",
+      yearlyPrice: "40",
+      period: "par mois",
+      total: 2,
+      features: [
+        "Gestion des commandes",
+        "Gestion des stocks",
+        "Gestion du personnel",
+        "Gestion des tâches",
+        "Analyse des performances",
+        "Boutique virtuelle",
+        "Support prioritaire",
+      ],
+      description: "Parfait pour les petits projets restaurants",
+      buttonText: "Selctionner",
+      href: "/",
+      isPopular: false,
+    },
+    {
+      name: "Business",
+      price: "99",
+      yearlyPrice: "79",
+      period: "par mois",
+      total: 4,
+      features: [
+        "Gestion des commandes",
+        "Gestion des stocks",
+        "Gestion du personnel",
+        "Gestion des tâches",
+        "Analyse des performances",
+        "Boutique virtuelle",
+        "Support prioritaire",
+      ],
+      description: "Idéal pour les équipes et les entreprises en croissance",
+      buttonText: "Selctionner",
+      href: "/",
+      isPopular: true,
+    },
+    {
+      name: "Cloud Startup",
+      price: "299",
+      yearlyPrice: "239",
+      period: "par mois ",
+      total: 6,
+      features: [
+        "Gestion des commandes",
+        "Gestion des stocks",
+        "Gestion du personnel",
+        "Gestion des tâches",
+        "Analyse des performances",
+        "Boutique virtuelle",
+        "Support prioritaire",
+      ],
+      description:
+        "Pour les grandes organisations ayant des besoins spécifiques",
+      buttonText: "Selctionner",
+      href: "/",
+      isPopular: false,
+    },
+  ];
+
+  return (
+    <>
+      <HeroSection />
+      {/* Description  */}
+      <FeaturesSectionWithHoverEffects />
+      {/* Temoignage */}
+      <Testimonials />
+      <Pricing
+        plans={demoPlans}
+        title="Choisissez votre plan idéal"
+        description="Commencez en toute confiance. Notre garantie satisfait ou remboursé de 30 jours vous assure une utilisation sans risque."
+      />
+      <Faq3 {...demoData} />
+      <Footer7 />
+    </>
   );
 }
