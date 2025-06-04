@@ -5,8 +5,6 @@ import { HeroSection } from "@/components/hero-section-1";
 import { Pricing } from "@/components/pricing";
 import Testimonials from "@/components/testimonials";
 
-
-
 export default function Home() {
   const demoData = {
     heading: "Frequently asked questions",
@@ -118,16 +116,24 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+
       {/* Description  */}
+
       <FeaturesSectionWithHoverEffects />
+
       {/* Temoignage */}
       <Testimonials />
+
+      {/* Tarif */}
       <Pricing
         plans={demoPlans}
         title="Choisissez votre plan idéal"
         description="Commencez en toute confiance. Notre garantie satisfait ou remboursé de 30 jours vous assure une utilisation sans risque."
       />
+
+      {/* FAQs */}
       <Faq3 {...demoData} />
+
       <Footer7 />
     </>
   );

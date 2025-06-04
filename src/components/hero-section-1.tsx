@@ -140,7 +140,7 @@ export function HeroSection() {
                       className="rounded-xl px-5 text-base"
                     >
                       <Link href="#link">
-                        <span className="text-nowrap">Essai de 30 jours !</span>
+                        <span className="text-nowrap">Demandez une Demo </span>
                         <ArrowRight className="ml-2" />
                       </Link>
                     </Button>
@@ -304,7 +304,7 @@ const menuItems = [
 
 const HeroHeader = () => {
   const pathname = usePathname();
-  console.log( "lien ",pathname)
+  console.log("lien ", pathname);
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
 

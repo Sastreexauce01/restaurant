@@ -25,28 +25,28 @@ const defaultSections = [
   {
     title: "Product",
     links: [
-      { name: "Overview", href: "#" },
-      { name: "Pricing", href: "#" },
-      { name: "Marketplace", href: "#" },
+      { name: "Fonctionalite", href: "#" },
+      { name: "Tarif", href: "#" },
+      { name: "FAQs", href: "#" },
       { name: "Features", href: "#" },
     ],
   },
   {
-    title: "Company",
+    title: "Solutions",
     links: [
-      { name: "About", href: "#" },
-      { name: "Team", href: "#" },
-      { name: "Blog", href: "#" },
+      { name: "Pour petits restaurants", href: "#" },
+      { name: "Pour chaînes de restaurants", href: "#" },
+      { name: "Pour services traiteur", href: "#" },
       { name: "Careers", href: "#" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { name: "Help", href: "#" },
-      { name: "Sales", href: "#" },
-      { name: "Advertise", href: "#" },
-      { name: "Privacy", href: "#" },
+      { name: "centre d'aide", href: "#" },
+      { name: "Tuoriels", href: "#" },
+      { name: "Blog", href: "#" },
+      { name: "Politique de confidentialité", href: "#" },
     ],
   },
 ];
@@ -71,9 +71,9 @@ export const Footer7 = ({
   legalLinks = defaultLegalLinks,
 }: Footer7Props) => {
   return (
-    <section className="py-32">
+    <section className="p-10  sm:p-20 lg:p-32 ">
       <div className="container mx-auto">
-        <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
+        <div className="flex w-full flex-col justify-between gap-5 lg:flex-row lg:items-start lg:text-left">
           <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
             {/* Logo */}
             <Link
