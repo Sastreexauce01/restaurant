@@ -14,33 +14,45 @@ export default function Home() {
     items: [
       {
         id: "faq-1",
-        question: "What is RestauManager",
+        question: "Comment puis-je m'inscrire sur RestauManager ?",
         answer:
-          "shadcnblocks is a collection of ready-to-use block components built on top of shadcn/ui, designed to help you build beautiful websites faster.",
+          "Cliquez sur le bouton 'Créer un compte', remplissez vos informations et suivez les étapes pour configurer votre restaurant.",
       },
       {
         id: "faq-2",
-        question: "How do I install shadcnblocks?",
+        question: "Puis-je gérer plusieurs restaurants avec un seul compte ?",
         answer:
-          "shadcnblocks components are designed to be copied and pasted into your project. Simply browse the components, click on the one you want to use, and copy the code directly into your project. This gives you full control over the code and allows for easy customization.",
+          "Oui, RestauManager vous permet de gérer plusieurs établissements à partir d’un seul tableau de bord.",
       },
       {
         id: "faq-3",
-        question: "Is shadcnblocks free to use?",
+        question: "Comment suivre mes commandes en temps réel ?",
         answer:
-          "Yes, shadcnblocks is open-source and free to use in both personal and commercial projects. You can customize and modify the blocks to suit your needs.",
+          "Une fois connecté, accédez à l’onglet 'Commandes' pour voir toutes les commandes en cours, en attente et terminées.",
       },
       {
         id: "faq-4",
-        question: "Can I customize the blocks?",
+        question: "Est-ce que je peux personnaliser mon menu ?",
         answer:
-          "Absolutely! All blocks are built with customization in mind. You can modify the styling, content, and behavior through props and Tailwind CSS classes.",
+          "Oui, vous pouvez créer, modifier ou supprimer des plats à tout moment dans la section 'Menu' de votre interface.",
       },
       {
         id: "faq-5",
-        question: "Do you offer support?",
+        question: "Quels moyens de paiement sont pris en charge ?",
         answer:
-          "Yes, we provide support through our GitHub repository where you can report issues, suggest features, or ask questions about implementation.",
+          "RestauManager prend en charge les paiements par carte bancaire, PayPal et espèces à la livraison si vous l’activez.",
+      },
+      {
+        id: "faq-6",
+        question: "Comment contacter l’assistance RestauManager ?",
+        answer:
+          "Vous pouvez nous écrire à support@restaumanager.com ou utiliser le chat en ligne disponible sur la plateforme.",
+      },
+      {
+        id: "faq-7",
+        question: "Y a-t-il une version d’essai gratuite ?",
+        answer:
+          "Oui, vous pouvez tester RestauManager gratuitement pendant 14 jours sans engagement.",
       },
     ],
     supportHeading: "Vous avez encore des questions ?",
@@ -119,7 +131,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Description  */}
-      <Feature74/>
+      <Feature74 />
 
       <FeaturesSectionWithHoverEffects />
 
@@ -135,8 +147,6 @@ export default function Home() {
 
       {/* FAQs */}
       <Faq3 {...demoData} />
-
-    
     </Wrapper>
   );
 }

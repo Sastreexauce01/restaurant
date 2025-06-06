@@ -68,7 +68,7 @@ const faqItems = [
 ];
 
 const Faq3 = ({
-  heading = "Frequently asked questions",
+  heading = "FAQs",
   description = "Find answers to common questions about our products. Can't find what you're looking for? Contact our support team.",
   items = faqItems,
   supportHeading = "Need more support?",

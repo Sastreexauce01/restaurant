@@ -8,7 +8,7 @@ const Feature74 = () => {
       name: "Gestion des commandes",
       description:
         "Prenez les commandes rapidement, transmettez-les en cuisine et suivez leur statut en temps réel. Interface intuitive adaptée aux besoins locaux",
-      img: "https://shadcnblocks.com/images/block/placeholder-1.svg",
+      img: "/restaut.webp",
     },
     {
       name: "Gestion des stocks",
