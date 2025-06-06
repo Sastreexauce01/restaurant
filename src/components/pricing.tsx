@@ -285,8 +285,36 @@ export function Pricing({
                 </DialogTrigger>
 
                 <DialogContent
-                  onInteractOutside={(e) => e.preventDefault()} // Empêche la fermeture au clic extérieur
-                  onEscapeKeyDown={(e) => e.preventDefault()} // Empêche la fermeture avec Échap
+                  // // ✅ Utilisez plutôt cette approche :
+                  onInteractOutside={(e) => {
+                    // Permettre la fermeture au step 0, demander confirmation au step 1
+                    if (step === 1) {
+                      e.preventDefault();
+                      // Optionnel : afficher une confirmation
+                      if (
+                        confirm(
+                          "Êtes-vous sûr de vouloir fermer ? Vos données seront perdues."
+                        )
+                      ) {
+                        setOpen(false);
+                        setStep(0); // Réinitialiser le step
+                      }
+                    }
+                    // Sinon, laisser la fermeture normale se faire
+                  }}
+                  onEscapeKeyDown={(e) => {
+                    if (step === 1) {
+                      e.preventDefault();
+                      if (
+                        confirm(
+                          "Êtes-vous sûr de vouloir fermer ? Vos données seront perdues."
+                        )
+                      ) {
+                        setOpen(false);
+                        setStep(0);
+                      }
+                    }
+                  }}
                   className="w-full sm:max-w-3xl lg:max-w-5xl bg-gray-100"
                 >
                   {step === 0 && (

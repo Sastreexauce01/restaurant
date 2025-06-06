@@ -53,7 +53,7 @@ export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
 
   // 4. Fonction de soumission
   const onSubmit = (values: FormValues) => {
-    console.log("Form submitted:", values ,abonnementSelection);
+    console.log("Form submitted:", values, abonnementSelection);
   };
 
   return (
