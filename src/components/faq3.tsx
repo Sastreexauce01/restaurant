@@ -20,7 +20,6 @@ interface Faq3Props {
   supportHeading: string;
   supportDescription: string;
   supportButtonText: string;
-  supportButtonUrl: string;
 }
 
 const faqItems = [
@@ -74,7 +73,6 @@ const Faq3 = ({
   supportHeading = "Need more support?",
   supportDescription = "Our dedicated support team is here to help you with any questions or concerns. Get in touch with us for personalized assistance.",
   supportButtonText = "Contact Support",
-  supportButtonUrl = "",
 }: Faq3Props) => {
   return (
     <section className=" p-5 sm:p-10  lg:p-15">
@@ -128,7 +126,7 @@ const Faq3 = ({
           </p>
           <div className="flex w-full flex-col justify-center gap-2 sm:flex-row">
             <Button className="w-full sm:w-auto" asChild>
-              <a href={supportButtonUrl} target="_blank">
+              <a href={"/"}>
                 {supportButtonText}
               </a>
             </Button>

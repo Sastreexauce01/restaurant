@@ -2,7 +2,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { cn } from "@/lib/utils";
@@ -194,7 +194,7 @@ export function HeroSection() {
         {/* Section partenaire */}
         <section className="bg-background pb-16 pt-16 md:pb-32">
           <div className="group relative m-auto max-w-5xl px-6">
-            <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
+            {/* <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
               <Link
                 href="/"
                 className="block text-sm duration-150 hover:opacity-75"
@@ -203,8 +203,8 @@ export function HeroSection() {
 
                 <ChevronRight className="ml-1 inline-block size-3" />
               </Link>
-            </div>
-            <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
+            </div> */}
+            <div className="-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
               <div className="flex">
                 <img
                   className="mx-auto h-5 w-fit dark:invert"
