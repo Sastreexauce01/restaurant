@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Button } from "./ui/button";
 
 // 1. Schéma de validation
 const formSchema = z.object({
@@ -37,7 +38,7 @@ interface AbonnementSelection {
 export interface AbonnementSelectionProps {
   abonnementSelection: AbonnementSelection | null;
 }
-export function Formulaire({ abonnementSelection } :AbonnementSelectionProps) {
+export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
   // 3. Initialisation du formulaire
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -52,7 +53,7 @@ export function Formulaire({ abonnementSelection } :AbonnementSelectionProps) {
 
   // 4. Fonction de soumission
   const onSubmit = (values: FormValues) => {
-    console.log("Form submitted:", values);
+    console.log("Form submitted:", values ,abonnementSelection);
   };
 
   return (
@@ -131,6 +132,16 @@ export function Formulaire({ abonnementSelection } :AbonnementSelectionProps) {
             </FormItem>
           )}
         />
+
+        <Button
+          type="submit"
+          className="w-full bg-primary hover:bg-primary/90"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting
+            ? "Envoi en cours..."
+            : "Finaliser l'abonnement"}
+        </Button>
       </form>
     </Form>
   );

@@ -295,10 +295,10 @@ export function Pricing({
                         Abonnment {selectedPlan?.name}
                       </DialogTitle>
 
-                      <p className="py-2 text-xs ">
+                      <DialogDescription className="py-2 text-xs ">
                         Choisissez une période de facturation et terminez le
                         processus d&lsquo;achat
-                      </p>
+                      </DialogDescription>
 
                       <div className="flex   flex-col-reverse  ">
                         {AbonnemnentTime.map(({ duree, reduction }) => (
@@ -360,35 +360,35 @@ export function Pricing({
                   )}
 
                   {step === 1 && (
-                    <div className="flex flex-col sm:flex-row gap-6 p-2">
-                      <div className="flex flex-col bg-white border rounded-lg p-2 w-full sm:w-1/3 shadow-sm">
+                    <div className="flex flex-col-reverse sm:flex-row gap-4 p-2 overflow-y-auto">
+                      <div className="flex flex-col bg-white border rounded-lg p-2 w-full sm:w-1/3  shadow-sm">
                         <DialogTitle className="text-xs sm:text-lg  pt-4  font-semibold  ">
                           Récapitulatif de l’abonnement
                         </DialogTitle>
                         <div className="my-8">
-                          <div className="flex justify-between py-5 border-b ">
+                          <div className="flex justify-between py-3 border-b ">
                             <p className="font-mono text-sm ">Plan </p>
                             <p className="font-medium text-sm ">
                               {selectedPlan?.name}
                             </p>
                           </div>
 
-                          <div className="flex justify-between py-5 border-b">
-                          <p className="font-mono text-sm ">Duree</p>
+                          <div className="flex justify-between py-3 border-b">
+                            <p className="font-mono text-sm ">Duree</p>
                             <p className="font-medium text-sm">
                               {abonnementSelection?.duree} mois{" "}
                             </p>
                           </div>
 
-                          <div className="flex justify-between py-5 border-b">
-                           <p className="font-mono text-sm "> Prix/mois</p>
+                          <div className="flex justify-between py-3 border-b">
+                            <p className="font-mono text-sm "> Prix/mois</p>
 
                             <p className="font-medium text-sm">
                               {abonnementSelection?.prixMois}€
                             </p>
                           </div>
 
-                          <div className="flex justify-between  py-5  font-semibold">
+                          <div className="flex justify-between  py-3  font-semibold">
                             <p className="font-bold font-lg">Total</p>
                             <p className="font-bold font-lg ">
                               {abonnementSelection?.prixTotal} €
@@ -397,7 +397,7 @@ export function Pricing({
                         </div>
                       </div>
 
-                      <div className="w-2/3 bg-white shadow-sm p-5 rounded-lg border  ">
+                      <div className="w-full sm:w-2/3 bg-white shadow-sm p-5 rounded-lg border  ">
                         <DialogHeader>
                           <DialogTitle className="text-lg font-semibold ">
                             Abonnement {selectedPlan?.name}
@@ -412,7 +412,7 @@ export function Pricing({
                     </div>
                   )}
 
-                  <DialogFooter >
+                  <DialogFooter>
                     <Button
                       variant={"outline"}
                       className="cursor-pointer"
@@ -428,9 +428,7 @@ export function Pricing({
                     </Button>
 
                     <Button
-
-                    className={cn("bg-primary",step==1 && "hidden")}
-                    
+                      className={cn("bg-primary", step == 1 && "hidden")}
                       onClick={() => setStep(step + 1)}
                     >
                       {step === 1 ? "  Finaliser l'abonnement" : "continuer"}
