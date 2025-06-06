@@ -7,6 +7,16 @@ import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogHeader,
+  DialogDescription,
+} from "./ui/dialog";
+
+import { Formulaire } from "./Formulaire";
 
 const transitionVariants = {
   item: {
@@ -112,29 +122,33 @@ export function HeroSection() {
                     key={1}
                     className="bg-foreground/10 rounded-[14px] border p-0.5"
                   >
-                    <Button
-                      asChild
-                      size="lg"
-                      className="rounded-xl px-5 text-base"
-                    >
-                      <Link href="https://wa.me/+22999984345">
-                        <span className="text-nowrap">Demandez une Demo </span>
-                        <ArrowRight className="ml-2" />
-                      </Link>
-                    </Button>
-                  </div>
-                  {/* <Button
-                    key={2}
-                    asChild
-                    size="lg"
-                    variant="ghost"
-                    className="h-10.5 rounded-xl px-5"
-                  >
-                    <Link href="#link">
-                      <span className="text-nowrap">Demander une demo</span>
-                    </Link>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button size="lg" className="rounded-xl px-5 text-base">
+                          <span className="text-nowrap">
+                            Demandez une Demo{" "}
+                          </span>
+                          <ArrowRight className="ml-2" />
+                        </Button>
+                      </DialogTrigger>
 
-                  </Button> */}
+                      <DialogContent className="w-full  sm:max-w-2xl lg:max-w-3xl bg-gray-100  ">
+                        <DialogHeader className="flex flex-col ">
+                          <DialogTitle className="text-lg font-semibold ">
+                            <p className="flex items-center  font-lg   font-bold">
+                              Restau
+                              <span className="text-primary">Manager</span>
+                            </p>
+                          </DialogTitle>
+                          <DialogDescription className="text-xs text-muted-foreground">
+                            Complétez le formulaire et terminez le processus de
+                            la demande
+                          </DialogDescription>
+                        </DialogHeader>
+                        <Formulaire abonnementSelection={null} />
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                 </AnimatedGroup>
               </div>
             </div>

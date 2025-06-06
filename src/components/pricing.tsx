@@ -284,39 +284,7 @@ export function Pricing({
                   </Button>
                 </DialogTrigger>
 
-                <DialogContent
-                  // // ✅ Utilisez plutôt cette approche :
-                  onInteractOutside={(e) => {
-                    // Permettre la fermeture au step 0, demander confirmation au step 1
-                    if (step === 1) {
-                      e.preventDefault();
-                      // Optionnel : afficher une confirmation
-                      if (
-                        confirm(
-                          "Êtes-vous sûr de vouloir fermer ? Vos données seront perdues."
-                        )
-                      ) {
-                        setOpen(false);
-                        setStep(0); // Réinitialiser le step
-                      }
-                    }
-                    // Sinon, laisser la fermeture normale se faire
-                  }}
-                  onEscapeKeyDown={(e) => {
-                    if (step === 1) {
-                      e.preventDefault();
-                      if (
-                        confirm(
-                          "Êtes-vous sûr de vouloir fermer ? Vos données seront perdues."
-                        )
-                      ) {
-                        setOpen(false);
-                        setStep(0);
-                      }
-                    }
-                  }}
-                  className="w-full sm:max-w-3xl lg:max-w-5xl bg-gray-100"
-                >
+                <DialogContent className="w-full  sm:max-w-3xl lg:max-w-xxl bg-gray-100 ">
                   {step === 0 && (
                     <div className=" flex flex-col p-5 ">
                       <DialogTitle className="text-lg  font-semibold  ">
@@ -347,14 +315,17 @@ export function Pricing({
                             </p>
 
                             {reduction != 0 && (
-                              <p className="  rounded-md  p-1  text-xs font-mono bg-primary/10 ">
-                                Reduction -{reduction}%
+                              <p className="  rounded-md  p-2  text-xs font-mono bg-primary/10 ">
+                                <span className="hidden sm:flex">
+                                  Reduction
+                                </span>{" "}
+                                -{reduction}%
                               </p>
                             )}
 
                             <div className="flex flex-col sm:flex-row  items-center gap-1">
                               {reduction != 0 && (
-                                <p className="  line-through  p-1 text-gray-500   font-semibold ">
+                                <p className="  line-through  p-1 text-gray-500   font-light">
                                   {selectedPlan?.price}€
                                 </p>
                               )}
@@ -389,7 +360,7 @@ export function Pricing({
 
                   {step === 1 && (
                     <div className="flex flex-col-reverse sm:flex-row gap-4 p-2 overflow-y-auto">
-                      <div className="flex flex-col bg-white border rounded-lg p-2 w-full sm:w-1/3  shadow-sm">
+                      <div className=" hidden sm:flex flex-col bg-gray-100 border rounded-lg p-2 w-full sm:w-1/3  shadow-sm">
                         <DialogTitle className="text-xs sm:text-lg  pt-4  font-semibold  ">
                           Récapitulatif de l’abonnement
                         </DialogTitle>
@@ -425,9 +396,9 @@ export function Pricing({
                         </div>
                       </div>
 
-                      <div className="w-full sm:w-2/3 bg-white shadow-sm p-5 rounded-lg border  ">
+                      <div className="w-full sm:w-2/3 bg-white shadow-sm py-2 px-3  rounded-lg border  ">
                         <DialogHeader>
-                          <DialogTitle className="text-lg font-semibold ">
+                          <DialogTitle className="text-lg font-semibold  ">
                             Abonnement {selectedPlan?.name}
                           </DialogTitle>
                           <DialogDescription className="text-xs text-muted-foreground">
@@ -440,10 +411,11 @@ export function Pricing({
                     </div>
                   )}
 
-                  <DialogFooter>
+                  <DialogFooter className="px-4">
                     <Button
+                     
                       variant={"outline"}
-                      className="cursor-pointer"
+                      className="cursor-pointer "
                       onClick={() => {
                         if (step == 0) {
                           setOpen(false);

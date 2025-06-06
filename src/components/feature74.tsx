@@ -11,27 +11,33 @@ const Feature74 = () => {
       img: "https://shadcnblocks.com/images/block/placeholder-1.svg",
     },
     {
-      name: "Gestion des commandes",
+      name: "Gestion des stocks",
       description:
-        "Prenez les commandes rapidement, transmettez-les en cuisine et suivez leur statut en temps réel. Interface intuitive adaptée aux besoins locaux",
+        "Suivi automatique des ingrédients grâce aux fiches techniques associées à chaque plat. Alerte en cas de rupture imminente.",
       img: "https://shadcnblocks.com/images/block/placeholder-1.svg",
     },
     {
-      name: "Gestion des commandes",
+      name: "Gestion du personnel",
       description:
-        "Prenez les commandes rapidement, transmettez-les en cuisine et suivez leur statut en temps réel. Interface intuitive adaptée aux besoins locaux",
+        "Planifiez les horaires, attribuez les tâches et suivez les performances de vos équipes. Optimisez votre main d'œuvre efficacement.",
       img: "https://shadcnblocks.com/images/block/placeholder-1.svg",
     },
     {
-      name: "Gestion des commandes",
+      name: "Gestion des tâches",
       description:
-        "Prenez les commandes rapidement, transmettez-les en cuisine et suivez leur statut en temps réel. Interface intuitive adaptée aux besoins locaux",
+        "Organisez le nettoyage, les préparations et toutes les tâches quotidiennes. Assurez-vous que rien n'est oublié avant l'ouverture.",
       img: "https://shadcnblocks.com/images/block/placeholder-1.svg",
     },
     {
-      name: "Gestion des commandes",
+      name: "Analyse des performances",
       description:
-        "Prenez les commandes rapidement, transmettez-les en cuisine et suivez leur statut en temps réel. Interface intuitive adaptée aux besoins locaux",
+        "Statistiques détaillées sur les ventes, temps de service et produits populaires. Prenez des décisions basées sur des données réelles.",
+      img: "https://shadcnblocks.com/images/block/placeholder-1.svg",
+    },
+    {
+      name: "Boutique virtuelle",
+      description:
+        "Recevez des commandes en ligne et gérez les livraisons. Solution complète intégrant le paiement et le suivi des commandes externes",
       img: "https://shadcnblocks.com/images/block/placeholder-1.svg",
     },
   ];
@@ -40,7 +46,7 @@ const Feature74 = () => {
       <div className="container flex flex-col gap-16 lg:px-16  ">
         <div className="   flex flex-col justify-center  items-center ">
           <h2 className="mb-3 text-xl font-semibold md:mb-4 md:text-4xl lg:mb-6">
-            Take Control of Your Restaurant
+            Prenez le control de votre restaurant
           </h2>
           <p className="mb-8 text-muted-foreground lg:text-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Elig
@@ -80,7 +86,6 @@ const Feature74 = () => {
               </div>
             </div>
           ))}
-
         </div>
       </div>
     </section>

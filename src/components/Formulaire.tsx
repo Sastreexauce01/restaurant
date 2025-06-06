@@ -53,18 +53,20 @@ export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
 
   // 4. Fonction de soumission
   const onSubmit = (values: FormValues) => {
-    console.log("Form submitted:", values, abonnementSelection);
+    console.log("forms", values);
+    console.log("Abonnemnt", abonnementSelection);
   };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="restaurantName"
           render={({ field }) => (
             <FormItem className="mt-2">
               <FormLabel className="text-sm ">Nom du restaurant</FormLabel>
+              <FormMessage />
               <FormControl className="py-4 ">
                 <Input
                   placeholder="Le Gourmet"
@@ -72,7 +74,6 @@ export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
                   className="rounded-md ring-primary"
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -140,6 +141,8 @@ export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
         >
           {form.formState.isSubmitting
             ? "Envoi en cours..."
+            : abonnementSelection == null
+            ? "Finaliser la demande "
             : "Finaliser l'abonnement"}
         </Button>
       </form>
