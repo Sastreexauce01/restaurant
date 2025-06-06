@@ -25,44 +25,45 @@ interface Faq3Props {
 const faqItems = [
   {
     id: "faq-1",
-    question: "What is the return policy?",
+    question: "Comment puis-je m'inscrire sur RestauManager ?",
     answer:
-      "You can return any item within 30 days of purchase for a full refund, provided it is in its original condition.",
+      "Cliquez sur le bouton 'Créer un compte', remplissez vos informations et suivez les étapes pour configurer votre restaurant.",
   },
   {
     id: "faq-2",
-    question: "How do I track my order?",
+    question: "Puis-je gérer plusieurs restaurants avec un seul compte ?",
     answer:
-      "Once your order is shipped, you will receive an email with a tracking number. You can use this number on our website to track your order.",
+      "Oui, RestauManager vous permet de gérer plusieurs établissements à partir d’un seul tableau de bord.",
   },
   {
     id: "faq-3",
-    question: "Do you offer international shipping?",
+    question: "Comment suivre mes commandes en temps réel ?",
     answer:
-      "Yes, we ship to most countries worldwide. Shipping costs and delivery times vary depending on the destination.",
+      "Une fois connecté, accédez à l’onglet 'Commandes' pour voir toutes les commandes en cours, en attente et terminées.",
   },
   {
     id: "faq-4",
-    question: "Can I change my order after it has been placed?",
+    question: "Est-ce que je peux personnaliser mon menu ?",
     answer:
-      "You can change your order within 24 hours of placing it by contacting our customer service team.",
+      "Oui, vous pouvez créer, modifier ou supprimer des plats à tout moment dans la section 'Menu' de votre interface.",
   },
   {
     id: "faq-5",
-    question: "What payment methods do you accept?",
-    answer: "We accept all major credit cards, PayPal, and Apple Pay.",
+    question: "Quels moyens de paiement sont pris en charge ?",
+    answer:
+      "RestauManager prend en charge les paiements par carte bancaire, PayPal et espèces à la livraison si vous l’activez.",
   },
   {
     id: "faq-6",
-    question: "How can I contact customer support?",
+    question: "Comment contacter l’assistance RestauManager ?",
     answer:
-      "You can reach our customer support team via email at support@example.com or by calling 1-800-123-4567.",
+      "Vous pouvez nous écrire à support@restaumanager.com ou utiliser le chat en ligne disponible sur la plateforme.",
   },
   {
     id: "faq-7",
-    question: "Are there any discounts for bulk purchases?",
+    question: "Y a-t-il une version d’essai gratuite ?",
     answer:
-      "Yes, we offer discounts for bulk purchases. Please contact our sales team for more information.",
+      "Oui, vous pouvez tester RestauManager gratuitement pendant 14 jours sans engagement.",
   },
 ];
 
