@@ -92,7 +92,7 @@ const Faq3 = ({
           {items.map((item) => (
             <AccordionItem key={item.id} value={item.id}>
               <AccordionTrigger className="transition-opacity duration-200 hover:no-underline hover:opacity-60">
-                <div className="font-medium sm:py-1 lg:py-2 lg:text-lg">
+                <div className="font-medium text-xs  sm:py-1 lg:py-2 lg:text-lg">
                   {item.question}
                 </div>
               </AccordionTrigger>
