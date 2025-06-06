@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-
+import { motion } from "framer-motion";
 const Feature74 = () => {
   const demoModules = [
     {
@@ -57,7 +57,14 @@ const Feature74 = () => {
 
         <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
           {demoModules.map(({ name, description, img }, i) => (
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1,
+                delay: 0.3, // assure-toi que "delay" est défini
+              }}
+              viewport={{ once: true, amount: 0.2 }}
               key={i}
               className="overflow-clip rounded-xl border border-border md:col-span-2 md:grid md:grid-cols-2 md:gap-6 lg:gap-8"
             >
@@ -84,7 +91,7 @@ const Feature74 = () => {
                   className="h-full w-full object-cover object-center"
                 />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
