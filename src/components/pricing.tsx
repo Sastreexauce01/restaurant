@@ -1,23 +1,35 @@
 "use client";
-
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Check, Minus, Star } from "lucide-react";
-import Link from "next/link";
-import { useState, useRef } from "react";
+// import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 import confetti from "canvas-confetti";
 import NumberFlow from "@number-flow/react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import { Formulaire } from "./Formulaire";
+
+// import { DialogClose } from "@radix-ui/react-dialog";
 
 interface PricingPlan {
   name: string;
   price: string;
   yearlyPrice: string;
   period: string;
-  total:number,
+  total: number;
   features: string[];
   description: string;
   buttonText: string;
@@ -29,6 +41,10 @@ interface PricingProps {
   plans: PricingPlan[];
   title?: string;
   description?: string;
+}
+interface AbonnementType {
+  duree: number;
+  reduction: number;
 }
 
 export function Pricing({
@@ -69,8 +85,67 @@ export function Pricing({
     }
   };
 
+  const AbonnemnentTime = [
+    {
+      duree: 1,
+      reduction: 0,
+    },
+
+    {
+      duree: 12,
+      reduction: 20,
+    },
+    {
+      duree: 48,
+      reduction: 35,
+    },
+  ];
+
+  interface AbonnementSelection {
+    name: string;
+    duree: number;
+    prixMois: number;
+    prixTotal: number;
+  }
+
+  const [open, setOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<PricingPlan | null>(null);
+  const [step, setStep] = useState(0);
+
+  const [selectPricing, setselectPricing] = useState<AbonnementType>(
+    AbonnemnentTime[2]
+  );
+
+  const [abonnementSelection, setAbonnementSelection] =
+    useState<AbonnementSelection | null>(null);
+
+  const priceTotal = (priceMonth: number, duration: number) => {
+    return Number((duration * priceMonth).toFixed(2));
+  };
+
+  const priceMonth = (price: number, reduction: number) => {
+    return Number((price - (price * reduction) / 100).toFixed(2));
+  };
+
+  useEffect(() => {
+    if (selectedPlan) {
+      const prixMois = priceMonth(
+        Number(selectedPlan.price),
+        selectPricing.reduction
+      );
+      const prixTotal = priceTotal(prixMois, selectPricing.duree);
+
+      setAbonnementSelection({
+        name: selectedPlan.name,
+        duree: selectPricing.duree,
+        prixMois,
+        prixTotal,
+      });
+    }
+  }, [selectedPlan, selectPricing]);
+
   return (
-    <div className="container py-20 px-5">
+    <div className="container py-20 " id="pricing">
       <div className="text-center space-y-4 mb-12">
         <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
           {title}
@@ -96,7 +171,7 @@ export function Pricing({
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 sm:2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 sm:2  gap-4 ">
         {plans.map((plan, index) => (
           <motion.div
             key={index}
@@ -157,7 +232,7 @@ export function Pricing({
                     willChange
                     className="font-variant-numeric: tabular-nums"
                   />
-                    €
+                  €
                 </span>
                 {plan.period !== "Next 3 months" && (
                   <span className="text-sm font-semibold leading-6 tracking-wide text-muted-foreground">
@@ -174,10 +249,9 @@ export function Pricing({
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     {idx <= plan.total ? (
-                     <Check className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+                      <Check className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
                     ) : (
-                      <Minus    className="h-4 w-4 text-ring mt-1 flex-shrink-0" />
-                       
+                      <Minus className="h-4 w-4 text-ring mt-1 flex-shrink-0" />
                     )}
 
                     <span className="text-left">{feature}</span>
@@ -187,21 +261,184 @@ export function Pricing({
 
               <hr className="w-full my-4" />
 
-              <Link
-                href={plan.href}
-                className={cn(
-                  buttonVariants({
-                    variant: "outline",
-                  }),
-                  "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
-                  "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:bg-primary hover:text-primary-foreground",
-                  plan.isPopular
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-background text-foreground"
-                )}
-              >
-                {plan.buttonText}
-              </Link>
+              <Dialog open={open} onOpenChange={(state) => setOpen(state)}>
+                <DialogTrigger asChild>
+                  <Button
+                    // href={plan.href}
+                    className={cn(
+                      buttonVariants({
+                        variant: "outline",
+                      }),
+                      "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
+                      "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:bg-primary hover:text-primary-foreground",
+                      plan.isPopular
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-background text-foreground"
+                    )}
+                    onClick={() => {
+                      setSelectedPlan(plan);
+                      setOpen(true);
+                    }}
+                  >
+                    {plan.buttonText}
+                  </Button>
+                </DialogTrigger>
+
+                <DialogContent
+                  onInteractOutside={(e) => e.preventDefault()} // Empêche la fermeture au clic extérieur
+                  onEscapeKeyDown={(e) => e.preventDefault()} // Empêche la fermeture avec Échap
+                  className="w-full sm:max-w-3xl lg:max-w-5xl bg-gray-100"
+                >
+                  {step === 0 && (
+                    <div className=" flex flex-col p-5 ">
+                      <DialogTitle className="text-lg  font-semibold  ">
+                        Abonnment {selectedPlan?.name}
+                      </DialogTitle>
+
+                      <p className="py-2 text-xs ">
+                        Choisissez une période de facturation et terminez le
+                        processus d&lsquo;achat
+                      </p>
+
+                      <div className="flex   flex-col-reverse  ">
+                        {AbonnemnentTime.map(({ duree, reduction }) => (
+                          <div
+                            key={duree}
+                            className={cn(
+                              "border rounded-xs   cursor-pointer  flex flex-row py-2 px-5 gap-6 items-center justify-between mt-2  duration-100 ease-in",
+                              duree === selectPricing?.duree
+                                ? "border-primary  "
+                                : ""
+                            )}
+                            onClick={() =>
+                              setselectPricing({ duree, reduction })
+                            }
+                          >
+                            <p className="font-normal text-xs ">
+                              {duree} mois{" "}
+                            </p>
+
+                            {reduction != 0 && (
+                              <p className="  rounded-md  p-1  text-xs font-mono bg-primary/10 ">
+                                Reduction -{reduction}%
+                              </p>
+                            )}
+
+                            <div className="flex flex-col sm:flex-row  items-center gap-1">
+                              {reduction != 0 && (
+                                <p className="  line-through  p-1 text-gray-500   font-semibold ">
+                                  {selectedPlan?.price}€
+                                </p>
+                              )}
+
+                              <p className="bg-gray-200  p-2   text-xs  rounded-md font-semibold ">
+                                {priceMonth(
+                                  Number(selectedPlan?.price),
+                                  reduction
+                                )}
+                                €<span className="font-light"> /mois</span>
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="flex flex-row justify-between py-4 mt-4">
+                        <h1 className="font-semibold text-2xl  ">Total</h1>
+                        <p className="font-bold text-2xl ">
+                          {priceTotal(
+                            priceMonth(
+                              Number(selectedPlan?.price),
+                              selectPricing?.reduction
+                            ),
+                            selectPricing?.duree
+                          )}
+                          €
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {step === 1 && (
+                    <div className="flex flex-col sm:flex-row gap-6 p-2">
+                      <div className="flex flex-col bg-white border rounded-lg p-2 w-full sm:w-1/3 shadow-sm">
+                        <DialogTitle className="text-xs sm:text-lg  pt-4  font-semibold  ">
+                          Récapitulatif de l’abonnement
+                        </DialogTitle>
+                        <div className="my-8">
+                          <div className="flex justify-between py-5 border-b ">
+                            <p className="font-mono text-sm ">Plan </p>
+                            <p className="font-medium text-sm ">
+                              {selectedPlan?.name}
+                            </p>
+                          </div>
+
+                          <div className="flex justify-between py-5 border-b">
+                          <p className="font-mono text-sm ">Duree</p>
+                            <p className="font-medium text-sm">
+                              {abonnementSelection?.duree} mois{" "}
+                            </p>
+                          </div>
+
+                          <div className="flex justify-between py-5 border-b">
+                           <p className="font-mono text-sm "> Prix/mois</p>
+
+                            <p className="font-medium text-sm">
+                              {abonnementSelection?.prixMois}€
+                            </p>
+                          </div>
+
+                          <div className="flex justify-between  py-5  font-semibold">
+                            <p className="font-bold font-lg">Total</p>
+                            <p className="font-bold font-lg ">
+                              {abonnementSelection?.prixTotal} €
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="w-2/3 bg-white shadow-sm p-5 rounded-lg border  ">
+                        <DialogHeader>
+                          <DialogTitle className="text-lg font-semibold ">
+                            Abonnement {selectedPlan?.name}
+                          </DialogTitle>
+                          <DialogDescription className="text-xs text-muted-foreground">
+                            Complétez le formulaire et terminez le processus
+                            d’abonnement
+                          </DialogDescription>
+                        </DialogHeader>
+                        <Formulaire abonnementSelection={abonnementSelection} />
+                      </div>
+                    </div>
+                  )}
+
+                  <DialogFooter >
+                    <Button
+                      variant={"outline"}
+                      className="cursor-pointer"
+                      onClick={() => {
+                        if (step == 0) {
+                          setOpen(false);
+                        } else {
+                          setStep(0);
+                        }
+                      }}
+                    >
+                      {step === -0 ? "  Annuler" : "retour"}
+                    </Button>
+
+                    <Button
+
+                    className={cn("bg-primary",step==1 && "hidden")}
+                    
+                      onClick={() => setStep(step + 1)}
+                    >
+                      {step === 1 ? "  Finaliser l'abonnement" : "continuer"}
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
               <p className="mt-6 text-xs leading-5 text-muted-foreground">
                 {plan.description}
               </p>

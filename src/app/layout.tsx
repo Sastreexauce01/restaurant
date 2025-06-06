@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist} from "next/font/google";
 import "./globals.css";
 
 import { Sen } from "next/font/google";
@@ -18,10 +18,7 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
 
 export const metadata: Metadata = {
   title: "RestauManager",
@@ -36,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sen.variable}  scroll-smooth font-sen antialiased`}
+        className={`${geistSans.variable}  ${sen.variable}  scroll-smooth font-sen antialiased`}
       >
         {children}
       </body>

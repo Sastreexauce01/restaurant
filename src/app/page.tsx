@@ -1,9 +1,10 @@
 import { Faq3 } from "@/components/faq3";
 import { FeaturesSectionWithHoverEffects } from "@/components/feature-section-with-hover-effects";
-import { Footer7 } from "@/components/footer-7";
+import { Feature74 } from "@/components/feature74";
 import { HeroSection } from "@/components/hero-section-1";
 import { Pricing } from "@/components/pricing";
 import Testimonials from "@/components/testimonials";
+import Wrapper from "@/components/Wrapper";
 
 export default function Home() {
   const demoData = {
@@ -52,8 +53,8 @@ export default function Home() {
   const demoPlans = [
     {
       name: "Premium",
-      price: "49",
-      yearlyPrice: "40",
+      price: "49.99",
+      yearlyPrice: "39.99",
       period: "par mois",
       total: 2,
       features: [
@@ -72,8 +73,8 @@ export default function Home() {
     },
     {
       name: "Business",
-      price: "99",
-      yearlyPrice: "79",
+      price: "99.99",
+      yearlyPrice: "79.99",
       period: "par mois",
       total: 4,
       features: [
@@ -92,8 +93,8 @@ export default function Home() {
     },
     {
       name: "Cloud Startup",
-      price: "299",
-      yearlyPrice: "239",
+      price: "299.99",
+      yearlyPrice: "239.99",
       period: "par mois ",
       total: 6,
       features: [
@@ -114,10 +115,11 @@ export default function Home() {
   ];
 
   return (
-    <>
+    <Wrapper>
       <HeroSection />
 
       {/* Description  */}
+      <Feature74/>
 
       <FeaturesSectionWithHoverEffects />
 
@@ -134,7 +136,7 @@ export default function Home() {
       {/* FAQs */}
       <Faq3 {...demoData} />
 
-      <Footer7 />
-    </>
+    
+    </Wrapper>
   );
 }
