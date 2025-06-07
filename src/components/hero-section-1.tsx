@@ -391,10 +391,10 @@ const HeroHeader = () => {
                 <Button
                   asChild
                   size="sm"
-                  className={cn(" ", isScrolled ? "sm:inline-flex" : "hidden")}
+                  className={cn( isScrolled ? " hidden sm:inline-flex" : "hidden")}
                 >
                   <Link href="#pricing">
-                    <span>S&apos;inscrire</span>
+                    <span>S&apos;inscrires</span>
                   </Link>
                 </Button>
               </div>

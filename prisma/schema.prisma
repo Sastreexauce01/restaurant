@@ -1,19 +1,41 @@
-// Define database connection via the `DATABASE_URL` env var
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// Define custom output path for generated Prisma Client
-generator client {
-  provider = "prisma-client-js"
-  output   = "/app/generated/prisma-client"
+// Modèle représentant un restaurant ou un utilisateur en démo
+model Demo {
+  id             Int      @id @default(autoincrement())
+  restaurantName String
+  fullName       String
+  email          String   @unique
+  phone          String
+  address        String
+  createdAt      DateTime @default(now())
+  dateExpiration DateTime
 }
 
-// Example data model
-model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
+// Modèle représentant un abonnement
+
+model Abonnement {
+  id             Int      @id @default(autoincrement())
+  accessKey      String   @unique
+  restaurantName String
+  fullName       String
+  email          String   @unique
+  phone          String
+  address        String
+  createdAt      DateTime @default(now())
+  dateExpiration DateTime
 }

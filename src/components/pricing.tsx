@@ -24,6 +24,7 @@ import { Formulaire } from "./Formulaire";
 
 // import { DialogClose } from "@radix-ui/react-dialog";
 
+
 interface PricingPlan {
   name: string;
   price: string;
@@ -145,7 +146,8 @@ export function Pricing({
   }, [selectedPlan, selectPricing]);
 
   return (
-    <div className="container py-20 p-5  " id="pricing">
+    <div className="container py-20 p-2  mx-auto " id="pricing">
+      
       <div className="text-center space-y-4 mb-12">
         <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
           {title}

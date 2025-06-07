@@ -26,7 +26,7 @@ const formSchema = z.object({
 });
 
 // 2. Type TypeScript dérivé du schéma
-type FormValues = z.infer<typeof formSchema>;
+export type FormValues = z.infer<typeof formSchema>;
 
 interface AbonnementSelection {
   name: string;
@@ -34,10 +34,10 @@ interface AbonnementSelection {
   prixMois: number;
   prixTotal: number;
 }
-
 export interface AbonnementSelectionProps {
   abonnementSelection: AbonnementSelection | null;
 }
+
 export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
   // 3. Initialisation du formulaire
   const form = useForm<FormValues>({

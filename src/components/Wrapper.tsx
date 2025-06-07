@@ -9,8 +9,10 @@ const Wrapper = ({ children }: WrapperProps) => {
   return (
     <>
       <HeroHeader />
+      <div className="">
         {children}
-      <Footer7 />
+        <Footer7 />
+      </div>
     </>
   );
 };
