@@ -315,7 +315,7 @@ export function Pricing({
                             </p>
 
                             {reduction != 0 && (
-                              <p className="  rounded-md  p-2  text-xs font-mono bg-primary/10 ">
+                              <p className="  rounded-md  flex flex-row p-2  text-xs font-mono bg-primary/10 ">
                                 <span className="hidden sm:flex">
                                   Reduction
                                 </span>{" "}
@@ -360,21 +360,21 @@ export function Pricing({
 
                   {step === 1 && (
                     <div className="flex flex-col-reverse sm:flex-row gap-4 p-2 overflow-y-auto">
-                      <div className=" hidden sm:flex flex-col bg-gray-100 border rounded-lg p-2 w-full sm:w-1/3  shadow-sm">
-                        <DialogTitle className="text-xs sm:text-lg  pt-4  font-semibold  ">
+                      <div className=" hidden sm:flex flex-col   border rounded-lg p-2 w-full sm:w-1/3  shadow-sm">
+                        <DialogTitle className="text-sm    font-semibold  ">
                           Récapitulatif de l’abonnement
                         </DialogTitle>
                         <div className="my-8">
                           <div className="flex justify-between py-3 border-b ">
                             <p className="font-mono text-sm ">Plan </p>
-                            <p className="font-medium text-sm ">
+                            <p className="font-medium text-xs ">
                               {selectedPlan?.name}
                             </p>
                           </div>
 
                           <div className="flex justify-between py-3 border-b">
                             <p className="font-mono text-sm ">Duree</p>
-                            <p className="font-medium text-sm">
+                            <p className="font-medium text-xs">
                               {abonnementSelection?.duree} mois{" "}
                             </p>
                           </div>
@@ -382,7 +382,7 @@ export function Pricing({
                           <div className="flex justify-between py-3 border-b">
                             <p className="font-mono text-sm "> Prix/mois</p>
 
-                            <p className="font-medium text-sm">
+                            <p className="font-medium text-xs">
                               {abonnementSelection?.prixMois}€
                             </p>
                           </div>
@@ -398,7 +398,7 @@ export function Pricing({
 
                       <div className="w-full sm:w-2/3 bg-white shadow-sm py-2 px-3  rounded-lg border  ">
                         <DialogHeader>
-                          <DialogTitle className="text-lg font-semibold  ">
+                          <DialogTitle className="text-sm font-semibold  ">
                             Abonnement {selectedPlan?.name}
                           </DialogTitle>
                           <DialogDescription className="text-xs text-muted-foreground">

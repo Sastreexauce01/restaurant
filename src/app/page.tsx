@@ -8,7 +8,7 @@ import Wrapper from "@/components/Wrapper";
 
 export default function Home() {
   const demoData = {
-    heading: "Frequently asked questions",
+    heading: "FAQs",
     description:
       "Everything you need to know about shadcnblocks. Can't find the answer you're looking for? Feel free to contact our support team.",
     items: [
@@ -41,18 +41,6 @@ export default function Home() {
         question: "Quels moyens de paiement sont pris en charge ?",
         answer:
           "RestauManager prend en charge les paiements par carte bancaire, PayPal et espèces à la livraison si vous l’activez.",
-      },
-      {
-        id: "faq-6",
-        question: "Comment contacter l’assistance RestauManager ?",
-        answer:
-          "Vous pouvez nous écrire à support@restaumanager.com ou utiliser le chat en ligne disponible sur la plateforme.",
-      },
-      {
-        id: "faq-7",
-        question: "Y a-t-il une version d’essai gratuite ?",
-        answer:
-          "Oui, vous pouvez tester RestauManager gratuitement pendant 14 jours sans engagement.",
       },
     ],
     supportHeading: "Vous avez encore des questions ?",

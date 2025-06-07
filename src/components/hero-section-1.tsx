@@ -6,7 +6,7 @@ import { ArrowRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+
 import {
   Dialog,
   DialogTrigger,
@@ -294,8 +294,6 @@ const menuItems = [
 ];
 
 const HeroHeader = () => {
-  const pathname = usePathname();
-  console.log("lien ", pathname);
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
 
@@ -346,12 +344,7 @@ const HeroHeader = () => {
                   <li key={index}>
                     <Link
                       href={item.href}
-                      className={cn(
-                        ` hover:text-primary block duration-200`,
-                        pathname === item.href
-                          ? "text-primary"
-                          : "text-foreground"
-                      )}
+                      className={cn(` hover:text-primary block duration-200`)}
                     >
                       <span>{item.name}</span>
                     </Link>
@@ -398,7 +391,7 @@ const HeroHeader = () => {
                 <Button
                   asChild
                   size="sm"
-                  className={cn(isScrolled ? "sm:inline-flex" : "hidden")}
+                  className={cn(" ", isScrolled ? "sm:inline-flex" : "hidden")}
                 >
                   <Link href="#pricing">
                     <span>S&apos;inscrire</span>
