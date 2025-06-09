@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { addUser_Demo, createFedaPayTransaction } from "@/app/action";
 
 import {
   Form,
@@ -15,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
+import { toast } from "react-toastify";
 
 // 1. Schéma de validation
 const formSchema = z.object({
@@ -28,12 +30,13 @@ const formSchema = z.object({
 // 2. Type TypeScript dérivé du schéma
 export type FormValues = z.infer<typeof formSchema>;
 
-interface AbonnementSelection {
+export interface AbonnementSelection {
   name: string;
   duree: number;
   prixMois: number;
   prixTotal: number;
 }
+
 export interface AbonnementSelectionProps {
   abonnementSelection: AbonnementSelection | null;
 }
@@ -52,9 +55,30 @@ export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
   });
 
   // 4. Fonction de soumission
-  const onSubmit = (values: FormValues) => {
-    console.log("forms", values);
-    console.log("Abonnemnt", abonnementSelection);
+  const onSubmit = async (values: FormValues) => {
+    try {
+      if (!abonnementSelection) {
+        const response = await addUser_Demo(values);
+        if (response.success == true) {
+          toast.success(response.message);
+          return;
+        }
+        toast.error(response.message);
+      } else {
+
+        const payment_url = await createFedaPayTransaction(
+          values,
+          abonnementSelection
+        );
+        if (payment_url) {
+          window.location.href = payment_url; // redirige vers FedaPay
+        }
+      }
+      
+    } catch (error) {
+      toast.error("Erreur lors de la soumission");
+      console.error("Erreur :", error);
+    }
   };
 
   return (
