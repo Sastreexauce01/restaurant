@@ -179,7 +179,7 @@ export async function createFedaPayTransaction(
     const transaction = await Transaction.create({
       description: `Abonnement ${abonnementSelection.name} - ${formsValues.restaurantName}`,
       amount: Math.round(abonnementSelection.prixTotal),
-      callback_url:   `${process.env.NEXT_PUBLIC_BASE_URL}/api/fedapay/callback`,
+      callback_url:   `${process.env.CALLBACK_URL}/api/fedapay/callback`,
       currency: {
         iso: "XOF",
       },
