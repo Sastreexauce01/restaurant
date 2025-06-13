@@ -51,7 +51,7 @@ export async function addUser_Demo(formsValues: FormValues) {
       where: { email: formsValues.email },
     });
 
-    if (existingUser) {
+    if (existingUser.length==0) {
       return { success: false, message: "Cet email existe déjà." };
     }
 
