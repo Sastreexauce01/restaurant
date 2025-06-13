@@ -116,6 +116,7 @@ export default function Home() {
 
   return (
     <Wrapper>
+
       <HeroSection />
 
       {/* Description  */}

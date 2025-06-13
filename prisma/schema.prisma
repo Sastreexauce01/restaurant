@@ -24,7 +24,7 @@ model User {
   address        String
   accessKey      String   @unique
   transactionId  String? // Null pour les démos
-  price          Int? // Null pour les démos
+  price          Float ?// Null pour les démos
   abonnementName String? // Null pour les démos
   createdAt      DateTime @default(now())
   dateExpiration DateTime

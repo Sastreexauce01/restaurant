@@ -47,14 +47,6 @@ export async function addUser_Demo(formsValues: FormValues) {
   if (!formsValues) return { success: false, message: "Formulaire invalide." };
 
   try {
-    const existingUser = await prisma.user.findMany({
-      where: { email: formsValues.email },
-    });
-
-    if (existingUser.length==0) {
-      return { success: false, message: "Cet email existe déjà." };
-    }
-
     const user = await prisma.user.create({
       data: {
         restaurantName: formsValues.restaurantName,
@@ -103,7 +95,7 @@ export async function addUser_Abonne(
         abonnementName: abonnementSelection.name,
         accessKey: await generateAccessKey(),
         dateExpiration: new Date(
-          Date.now() + abonnementSelection.duree * 24 * 60 * 60 * 1000
+          Date.now() + abonnementSelection.duree *30 * 24 * 60 * 60 * 1000
         ),
       },
     });
@@ -144,27 +136,35 @@ export async function uploadUrl(
     return null;
   }
 }
-
 export async function sendEmail(user: userType) {
   try {
     const downloadUrl = await generatorPdf(user);
 
-    if (downloadUrl) {
-      const { data, error } = await resend.emails.send({
-        from: "Acme <onboarding@resend.dev>",
-        to: ["sastreexauce01@gmail.com"],
-        subject: "Clé d'accès à votre espace",
-        react: EmailTemplate({ user, downloadUrl }) as ReactElement,
-      });
-      if (error) {
-        return Response.json({ error }, { status: 500 });
-      }
-      return Response.json(data);
+    if (!downloadUrl) {
+      console.error("Échec génération du PDF.");
+      return { success: false, message: "Échec de la génération du PDF" };
     }
+
+    const { data, error } = await resend.emails.send({
+     from: 'RestauManager <onboarding@resend.dev>',
+      to: [user.email],
+      subject: "Clé d'accès à votre espace",
+      react: EmailTemplate({ user, downloadUrl }) as ReactElement,
+    });
+
+    if (error) {
+      console.error("Erreur envoi email:", error);
+      return { success: false, message: "Échec de l'envoi de l'email" };
+    }
+
+    console.log("Email envoyé:", data);
+    return { success: true, message: "Email envoyé avec succès" };
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    console.error("Erreur dans sendEmail:", error);
+    return { success: false, message: "Erreur serveur" };
   }
 }
+
 
 // Crée une transaction FedaPay
 export async function createFedaPayTransaction(
@@ -178,8 +178,8 @@ export async function createFedaPayTransaction(
   try {
     const transaction = await Transaction.create({
       description: `Abonnement ${abonnementSelection.name} - ${formsValues.restaurantName}`,
-      amount: Math.round(abonnementSelection.prixTotal),
-      callback_url:   `${process.env.CALLBACK_URL}/api/fedapay/callback`,
+      amount: Math.round(abonnementSelection.prixTotal * 650),
+      callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/Confirmation`,
       currency: {
         iso: "XOF",
       },
@@ -192,7 +192,7 @@ export async function createFedaPayTransaction(
           country: "BJ",
         },
       },
-      metadata: {
+      custom_metadata: {
         formsValues: JSON.stringify(formsValues),
         abonnementSelection: JSON.stringify(abonnementSelection),
       },
@@ -218,21 +218,33 @@ export async function createFedaPayTransaction(
 // Traite le callback de paiement FedaPay
 export async function handlePaymentCallback(transactionId: string) {
   try {
+    const existingUser = await prisma.user.findFirst({
+      where: { transactionId: transactionId },
+    });
+
+    if (existingUser) {
+      return { success: true, message: "Utilisateur déjà enregistré." };
+    }
+
     const transaction = await Transaction.retrieve(transactionId);
+    console.log("Transaction récupérée:", transaction);
 
     if (transaction.status === "approved") {
-      const metadata = transaction.metadata;
-      const formsValues: FormValues = JSON.parse(metadata.formsValues);
-      const abonnementSelection: AbonnementSelection = JSON.parse(
-        metadata.abonnementSelection
-      );
+     
+      const data = transaction.custom_metadata;
+      const formsValues = JSON.parse(data.forms_values); // ✔️
+      const abonnementSelection = JSON.parse(data.abonnement_selection); // ✔️
+
+      if (!formsValues || !abonnementSelection) {
+        return { success: false, message: "Donnees manquantes " };
+      }
 
       // Créer l'utilisateur après paiement réussi
       await addUser_Abonne(formsValues, abonnementSelection, transactionId);
 
       return { success: true, message: "Paiment  reussi " };
     } else {
-      return { success: false, message: "Paiement échoué ou en attente" };
+      return { success: false, message: "Paiement échoué " };
     }
   } catch (error) {
     console.error("Erreur traitement callback:", error);

@@ -16,7 +16,9 @@ export async function POST(req: NextRequest) {
     }
     const result = await handlePaymentCallback(transactionId);
     return NextResponse.json(result);
+
   } catch (error: any) {
+
     console.error(error);
     return NextResponse.json(
       { success: false, message: "Erreur serveur", error: error.message },
@@ -24,3 +26,5 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+
