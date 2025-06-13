@@ -1,29 +1,10 @@
-// interface AbonnementSelection {
-//   name: string;
-//   duree: number;
-//   prixMois: number;
-//   prixTotal: number;
-// }
 
-// interface PricingPlan {
-//   name: string;
-//   price: string;
-//   yearlyPrice: string;
-//   period: string;
-//   total: number;
-//   features: string[];
-//   description: string;
-//   buttonText: string;
-//   href: string;
-//   isPopular: boolean;
-// }
+// import {  User as UserPrisma } from "@/generated/prisma" ;
 
-// interface PricingProps {
-//   plans: PricingPlan[];
-//   title?: string;
-//   description?: string;
+
+
+// // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+// export interface UserType extends UserPrisma {
+
 // }
-// interface AbonnementType {
-//   duree: number;
-//   reduction: number;
-// }
+  

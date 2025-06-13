@@ -3,7 +3,7 @@ import { FeaturesSectionWithHoverEffects } from "@/components/feature-section-wi
 import { Feature74 } from "@/components/feature74";
 import { HeroSection } from "@/components/hero-section-1";
 import { Pricing } from "@/components/pricing";
-import Testimonials from "@/components/testimonials";
+import Testimonials from  "@/components/testimonials";
 import Wrapper from "@/components/Wrapper";
 
 export default function Home() {

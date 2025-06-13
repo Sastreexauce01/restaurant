@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { addUser_Demo, createFedaPayTransaction } from "@/app/action";
+import { addUser_Demo, createFedaPayTransaction } from "@/app/server";
 
 import {
   Form,
@@ -65,16 +65,15 @@ export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
         }
         toast.error(response.message);
       } else {
-
-        const payment_url = await createFedaPayTransaction(
+        const { payment_url } = await createFedaPayTransaction(
           values,
           abonnementSelection
         );
+
         if (payment_url) {
           window.location.href = payment_url; // redirige vers FedaPay
         }
       }
-      
     } catch (error) {
       toast.error("Erreur lors de la soumission");
       console.error("Erreur :", error);
@@ -166,8 +165,8 @@ export function Formulaire({ abonnementSelection }: AbonnementSelectionProps) {
           {form.formState.isSubmitting
             ? "Envoi en cours..."
             : abonnementSelection == null
-            ? "Finaliser la demande "
-            : "Finaliser l'abonnement"}
+              ? "Finaliser la demande "
+              : "Finaliser l'abonnement"}
         </Button>
       </form>
     </Form>

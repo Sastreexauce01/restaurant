@@ -19,7 +19,7 @@ model User {
   type           UserType @default(DEMO) // DEMO ou PAID
   restaurantName String
   fullName       String
-  email          String   @unique
+  email          String   
   phone          String
   address        String
   accessKey      String   @unique
