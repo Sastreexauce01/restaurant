@@ -275,7 +275,7 @@ const PdfDocument = ({ user }: userProps) => {
             <View style={styles.subscriptionInfo}>
               <View>
                 <Text style={styles.subscriptionType}>
-                  Type: {user.abonnementName}
+                  Type: {user.abonnementName }
                 </Text>
               </View>
               <View>

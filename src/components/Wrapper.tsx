@@ -1,6 +1,6 @@
 import React from "react";
-import { Footer7 } from "./footer-7";
-import HeroHeader from "./hero-section-1";
+import { Footer7 } from "./footer";
+import HeroHeader from "./hero-section";
   import { Bounce, ToastContainer } from 'react-toastify';
 interface WrapperProps {
   children: React.ReactNode;

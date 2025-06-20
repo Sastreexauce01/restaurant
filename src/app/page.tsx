@@ -1,7 +1,7 @@
-import { Faq3 } from "@/components/faq3";
+import { Faq3 } from "@/components/faq";
 import { FeaturesSectionWithHoverEffects } from "@/components/feature-section-with-hover-effects";
-import { Feature74 } from "@/components/feature74";
-import { HeroSection } from "@/components/hero-section-1";
+import { Feature74 } from "@/components/feature";
+import { HeroSection } from "@/components/hero-section";
 import { Pricing } from "@/components/pricing";
 import Testimonials from  "@/components/testimonials";
 import Wrapper from "@/components/Wrapper";
@@ -139,3 +139,6 @@ export default function Home() {
     </Wrapper>
   );
 }
+
+
+
